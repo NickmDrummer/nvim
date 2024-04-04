@@ -1,14 +1,13 @@
 return {
   "folke/tokyonight.nvim",
   opts = {
-    transparent = false,
+    transparent = true,
     styles = {
-      -- sidebars = "transparent",
-      -- floats = "transparent",
+      sidebars = "transparent",
+      floats = "transparent",
       comments = "italic",
       keywords = "italic",
       functions = "italic",
     },
   },
 }
--- este es un ejemplo de un comentario
