@@ -76,3 +76,8 @@ require("telescope").setup({
     },
   },
 })
+-- Fixes the black boxes
+require("mini.animate").setup({
+  open = { enable = false },
+  close = { enable = false },
+})
