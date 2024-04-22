@@ -9,7 +9,7 @@
 
 ## Características de mi configuración
 
-- Asistente virtual con Codeium (Iniciar sesión y usar el token)
+- Asistente AI con Codeium (Iniciar sesión y usar el token)
 - Tema Solarized Osaka de [Tayuka Matsuyama(craftzdog)](https://github.com/craftzdog/solarized-osaka.nvim)
 - Dashboard custom
 - Autocompletado listo para C, JavaScript y otros lenguajes
@@ -38,7 +38,7 @@
 
 ## Instalación de requerimientos en Fedora
 
-- `sudo dnf install neovim` (Neovim con LuaJIT)
+- Instalar neovim `sudo dnf install neovim` (Neovim con LuaJIT)
 - Verificar que GIT esté instalado con `git --version` (Preinstalado con Fedora)
 - Verificar que GCC esté instalado con `gcc --version` (ya se instala al instalar neovim)
 - Instalar ripgrep `sudo dnf install ripgrep`
@@ -48,16 +48,17 @@
 - Instalar pnpm `npm install -g pnpm` (necesario para live-server)
 - Descargar una [Nerd Font](https://www.nerdfonts.com/font-downloads) (yo uso Blex Mono Nerd Font)
 - Vamos a necesitar una Terminal que soporte True Color y undercurl. Mi preferencia es [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Para dejar el efecto blur con transparencia necesitamos la extensión Blur My Shell para Gnome y bajar la opacidad deseada en ~/.config/kitty/kitty.conf
 
 ## Antes de clonar mi repositorio
 
 Hacemos un backup de la carpeta nvim si existiere:
 
-- required
+- Requerido
 
 `mv ~/.config/nvim{,.bak}`
 
-- optional but recommended
+- Opcional pero recomendado
 
 ```
 mv ~/.local/share/nvim{,.bak}
