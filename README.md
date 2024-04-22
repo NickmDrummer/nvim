@@ -7,6 +7,20 @@
 
 ![focus](https://github.com/NickmDrummer/nvim/raw/main/assets/focus.png)
 
+## Características de mi configuración
+
+- Asistente virtual con Codeium (Iniciar sesión y usar el token)
+- Tema Solarized Osaka de [Tayuka Matsuyama(craftzdog)](https://github.com/craftzdog/solarized-osaka.nvim)
+- Dashboard custom
+- Autocompletado listo para C, JavaScript y otros lenguajes
+- NeoGit integrado
+- Todo-Comments
+- Eslint
+- Prettier
+- Plugin de Live Server (requiere instalar live-server y pnpm con npm)
+- Ctrl-a para seleccionar todo (Solo tengo esta keymap por ahora :D)
+- Autoformat y Wrap habilitados en options.lua
+
 ## ⚡️ Requirements
 
 - Neovim >= 0.9.0 (needs to be built with LuaJIT)
@@ -29,7 +43,9 @@
 - Verificar que GCC esté instalado con `gcc --version` (ya se instala al instalar neovim)
 - Instalar ripgrep `sudo dnf install ripgrep`
 - Instalar fd `sudo dnf install fd-find`
-- Instalar Node y NPM `sudo dnf install node`
+- Instalar Node y NPM `sudo dnf install nodejs`
+- Instalar live-server `npm install -g live-server` (opcional)
+- Instalar pnpm `npm install -g pnpm` (necesario para live-server)
 - Descargar una [Nerd Font](https://www.nerdfonts.com/font-downloads) (yo uso Blex Mono Nerd Font)
 - Vamos a necesitar una Terminal que soporte True Color y undercurl. Mi preferencia es [Kitty](https://sw.kovidgoyal.net/kitty/)
 
