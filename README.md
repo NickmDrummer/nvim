@@ -2,26 +2,15 @@
 
 [LazyVim Main Page](https://lazyvim.org)
 
-![dashboard](https://github.com/NickmDrummer/nvim/raw/main/assets/dashboard.png)
-![main](https://github.com/NickmDrummer/nvim/raw/main/assets/main.png)
-
-![focus](https://github.com/NickmDrummer/nvim/raw/main/assets/focus.png)
-
 ## Características de mi configuración
 
-- Asistente AI con Codeium (Iniciar sesión y usar el token)
-- Tema Solarized Osaka de [Tayuka Matsuyama(craftzdog)](https://github.com/craftzdog/solarized-osaka.nvim)
-- Dashboard custom
-- Autocompletado listo para C, JavaScript y otros lenguajes
-- NeoGit integrado
-- Todo-Comments
-- Eslint
-- Prettier
+- Asistente AI con [NeoCodeium](https://github.com/monkoose/neocodeium) (Iniciar sesión y usar el token)
+- Cyberdream de [scottmckendry](https://github.com/scottmckendry/cyberdream.nvim)
 - Plugin de Live Server (requiere instalar live-server y pnpm con npm)
 - Ctrl-a para seleccionar todo (Solo tengo esta keymap por ahora :D)
 - Autoformat y Wrap habilitados en options.lua
 
-## ⚡️ Requirements
+## ⚡️ LazyVim Requirements
 
 - Neovim >= 0.9.0 (needs to be built with LuaJIT)
 - Git >= 2.19.0 (for partial clones support)
@@ -46,7 +35,7 @@
 - Instalar Node y NPM `sudo dnf install nodejs`
 - Instalar live-server `npm install -g live-server` (opcional)
 - Instalar pnpm `npm install -g pnpm` (necesario para live-server)
-- Descargar una [Nerd Font](https://www.nerdfonts.com/font-downloads) (yo uso Blex Mono Nerd Font)
+- Descargar una [Nerd Font](https://www.nerdfonts.com/font-downloads) (Recomiendo JetBrains Mono, Lilex, y SpaceMono)
 - Vamos a necesitar una Terminal que soporte True Color y undercurl. Mi preferencia es [Kitty](https://sw.kovidgoyal.net/kitty/)
 - Para dejar el efecto blur con transparencia necesitamos la extensión Blur My Shell para Gnome y bajar la opacidad deseada en ~/.config/kitty/kitty.conf
 
