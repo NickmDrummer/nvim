@@ -8,7 +8,7 @@ return {
       terminal_colors = true,
       italic_comments = true,
       hide_fillchars = false,
-      borderless_telescope = true,
+      borderless_telescope = false,
       theme = {
         variant = "default",
       }
