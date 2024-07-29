@@ -84,10 +84,10 @@ require("mini.animate").setup({
   close = { enable = false },
 })
 
-require('lspconfig').gopls.setup({
+require("lspconfig").gopls.setup({
   settings = {
     gopls = {
       gofumpt = true,
-    }
-  }
+    },
+  },
 })
