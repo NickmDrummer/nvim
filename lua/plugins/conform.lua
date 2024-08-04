@@ -14,6 +14,7 @@ return {
           typescript = { "prettier" },
           typescriptreact = { "prettier" },
           yaml = { "prettier" },
+          lua = { "stylua" },
         },
       }
       return opts

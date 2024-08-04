@@ -91,3 +91,15 @@ require("lspconfig").gopls.setup({
     },
   },
 })
+
+require("lualine").setup({
+  options = {
+    theme = "auto",
+  },
+})
+require("catppuccin").setup({
+  flavour = "latte",
+  transparent_background = true,
+})
+require("colorizer").setup(
+)

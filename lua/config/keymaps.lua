@@ -4,3 +4,5 @@
 
 --Select All
 vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
+-- Add a custom keybinding to toggle the colorscheme
+vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
