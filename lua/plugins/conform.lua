@@ -7,6 +7,7 @@ return {
         formatters_by_ft = {
           go = { "gofumpt" },
           c = { "clang-format" },
+          cs = { "csharpier" },
           html = { "prettier" },
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
@@ -15,6 +16,12 @@ return {
           typescriptreact = { "prettier" },
           yaml = { "prettier" },
           lua = { "stylua" },
+        },
+        formatter = {
+          csharpier = {
+            command = "dotnet-csharpier",
+            args = { "--write-stdout" },
+          },
         },
       }
       return opts
