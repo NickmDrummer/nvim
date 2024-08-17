@@ -14,7 +14,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "cyberdream",
+        colorscheme = "citruszest",
       },
     },
     -- import any extras modules here
@@ -94,12 +94,11 @@ require("lspconfig").gopls.setup({
 
 require("lualine").setup({
   options = {
-    theme = "auto",
+    theme = "citruszest",
   },
 })
 require("catppuccin").setup({
-  flavour = "latte",
-  transparent_background = true,
+  flavour = "macchiato",
+  transparent_background = false,
 })
-require("colorizer").setup(
-)
+require("colorizer").setup()
