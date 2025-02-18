@@ -12,8 +12,8 @@ return {
       mode = "dark", -- default, dark, light
       fluo = "pink", -- pink, cyan, yellow, orange, green
       custom = {
-        saturation = "80", -- string between 0 and 100
-        light = "25", -- string between 0 and 100
+        saturation = "", -- string between 0 and 100
+        light = "", -- string between 0 and 100
       },
     },
     ui = {
