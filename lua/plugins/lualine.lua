@@ -25,11 +25,11 @@ return {
 
     -- NOTE: This is the theme I use
     -- BUG: the theme option is not working and I have to force the colors
-    local eldritch = require("lualine.themes.eldritch")
+    local theme = require("lualine.themes.rose-pine")
 
     require("lualine").setup({
       options = {
-        theme = eldritch,
+        theme = theme,
         component_separators = "",
         section_separators = { left = "", right = "" },
         disabled_filetypes = { "alpha", "Outline" },
