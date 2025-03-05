@@ -13,7 +13,18 @@ vim.o.tabstop = 4 --  A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.opt.smartindent = true
 vim.opt.list = false
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.scrolloff = 8
+vim.opt.updatetime = 50
 
 -- INFO: Moonfly Config Begin
 vim.g.moonflyItalics = true
@@ -24,11 +35,11 @@ vim.g.moonflyTransparent = false
 
 -- Display diagnostic virtual text in color
 vim.g.moonflyVirtualText = true
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signatureHelp, {
-  border = "single",
-})
-vim.diagnostic.config({ float = { border = "single" } })
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--   border = "single",
+-- })
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signatureHelp, {
+--   border = "single",
+-- })
+-- vim.diagnostic.config({ float = { border = "single" } })
 -- INFO: Moonfly Config End

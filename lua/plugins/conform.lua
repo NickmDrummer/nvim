@@ -5,7 +5,7 @@ return {
     opts = function()
       local opts = {
         formatters_by_ft = {
-          go = { "gofumpt" },
+          go = { "gofumpt", "goimports" },
           c = { "clang-format" },
           cs = { "csharpier" },
           html = { "prettier" },

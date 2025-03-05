@@ -15,7 +15,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "rose-pine-main",
+        colorscheme = "solarized-osaka",
       },
     },
     -- import any extras modules here
@@ -101,11 +101,14 @@ require("lspconfig").gopls.setup({
 
 require("colorizer").setup()
 
--- Moonfly option for Blink.cmp for "nicer bordered display" with floating windows
-local winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel"
 require("blink.cmp").setup({
   completion = {
-    menu = { winhighlight = winhighlight },
-    documentation = { window = { winhighlight = winhighlight } },
+    menu = { border = "rounded" },
+    documentation = {
+      window = { border = "rounded" },
+      auto_show = true,
+      auto_show_delay_ms = 500,
+    },
   },
+  signature = { window = { border = "rounded" } },
 })
