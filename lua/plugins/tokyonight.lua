@@ -1,15 +1,17 @@
 return {
   "folke/tokyonight.nvim",
-  lazy = true,
-  -- priority = 1000,
+  lazy = false,
+  priority = 1000,
   opts = {
-    transparent = false,
+    style = "moon",
+    transparent = true,
     styles = {
-      -- sidebars = "transparent",
-      -- floats = "transparent",
-      -- comments = "italic",
-      -- keywords = "bold",
-      -- functions = "italic",
+      comments = { italic = true },
+      keywords = { italic = false, bold = true },
+      functions = { italic = true },
+      variables = { italic = false },
+      sidebars = "transparent",
+      floats = "transparent",
     },
   },
 }

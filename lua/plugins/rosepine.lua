@@ -1,7 +1,8 @@
 return {
   "rose-pine/neovim",
+  lazy = false,
+  priority = 1000,
   name = "rose-pine",
-  lazy = true,
   opts = {
     variant = "main",
     dark_variant = "main",
