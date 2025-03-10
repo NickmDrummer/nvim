@@ -1,6 +1,7 @@
 {
     "diagnostics.globals": [
         "telescope",
-        "local"
+        "local",
+        "header"
     ]
 }
