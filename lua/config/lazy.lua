@@ -100,15 +100,3 @@ require("lspconfig").gopls.setup({
 })
 
 require("colorizer").setup()
-
-require("blink.cmp").setup({
-  completion = {
-    menu = { border = "rounded" },
-    documentation = {
-      window = { border = "rounded" },
-      auto_show = true,
-      auto_show_delay_ms = 500,
-    },
-  },
-  signature = { window = { border = "rounded" } },
-})
