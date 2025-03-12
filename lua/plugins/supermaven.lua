@@ -10,7 +10,7 @@ return {
       },
       ignore_filetypes = {},
       color = {
-        suggestion_color = "#37f499",
+        suggestion_color = "#3ebcd5",
         cterm = 244,
       },
       log_level = "off",
