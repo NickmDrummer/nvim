@@ -2,15 +2,18 @@ return {
   "scottmckendry/cyberdream.nvim",
   lazy = false,
   priority = 1000,
-  config = function()
-    require("cyberdream").setup({
-      variant = "auto",
-      transparent = true,
-      italic_comments = true,
-      hide_fillchars = true,
-      terminal_colors = false,
-      cache = true,
-      borderless_pickers = true,
-    })
-  end,
+  opts = {
+    variant = "default",
+    transparent = true,
+    italic_comments = true,
+    hide_fillchars = true,
+    terminal_colors = false,
+    cache = false,
+    borderless_pickers = true,
+    extensions = {
+      telescope = true,
+      notify = true,
+      mini = true,
+    },
+  },
 }
