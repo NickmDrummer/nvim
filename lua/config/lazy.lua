@@ -100,3 +100,7 @@ require("lspconfig").gopls.setup({
 })
 
 require("colorizer").setup()
+
+require("render-markdown").setup({
+  completions = { lsp = { enabled = true } },
+})
