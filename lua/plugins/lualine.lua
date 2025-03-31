@@ -3,7 +3,6 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
 
   config = function()
-    local actualTheme = require("lualine.themes.cyberdream")
     local cyberdream = {
       black = "#000000",
       black2 = "#000002",
@@ -19,93 +18,118 @@ return {
       pink = "#ff5ea0",
       purple = "#bd5eff",
     }
-    -- section Mode
-    actualTheme.normal.a.bg = cyberdream.blue
-    actualTheme.normal.a.fg = cyberdream.black2
-    actualTheme.insert.a.bg = cyberdream.green
-    actualTheme.insert.a.fg = cyberdream.black2
-    actualTheme.visual.a.bg = cyberdream.purple
-    actualTheme.visual.a.fg = cyberdream.white
-    actualTheme.terminal.a.bg = cyberdream.pureOrange
-    actualTheme.terminal.a.fg = cyberdream.white
 
-    -- section Branch
-    actualTheme.normal.b.fg = cyberdream.white
+    local function apply_custom_colors(theme)
+      -- section Mode
+      theme.normal.a.bg = cyberdream.blue
+      theme.normal.a.fg = cyberdream.black2
+      theme.insert.a.bg = cyberdream.green
+      theme.insert.a.fg = cyberdream.black2
+      theme.visual.a.bg = cyberdream.purple
+      theme.visual.a.fg = cyberdream.white
+      theme.terminal.a.bg = cyberdream.pureOrange
+      theme.terminal.a.fg = cyberdream.white
 
-    -- section Progress
-    actualTheme.normal.y.bg = cyberdream.black2
-    actualTheme.normal.y.fg = cyberdream.pink
+      -- section Branch
+      theme.normal.b.fg = cyberdream.white
 
-    -- section Location
-    actualTheme.normal.z.bg = cyberdream.pink
-    actualTheme.normal.z.fg = cyberdream.black2
-    actualTheme.insert.z.bg = cyberdream.pink
-    actualTheme.insert.z.fg = cyberdream.black2
-    actualTheme.visual.z.bg = cyberdream.pink
-    actualTheme.visual.z.fg = cyberdream.black2
-    actualTheme.terminal.z.bg = cyberdream.pink
-    actualTheme.terminal.z.fg = cyberdream.black2
+      -- section Progress
+      theme.normal.y.bg = cyberdream.black2
+      theme.normal.y.fg = cyberdream.pink
 
-    require("lualine").setup({
-      options = {
-        icons_enabled = true,
-        theme = actualTheme,
-        component_separators = { left = "⏽", right = "⏽" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        always_show_tabline = true,
-        globalstatus = false,
-        refresh = {
-          statusline = 100,
-          tabline = 100,
-          winbar = 100,
-        },
-      },
-      sections = {
-        lualine_a = {
-          "mode",
-        },
-        lualine_b = {
-          { "branch", icon = " " },
-          {
-            "diff",
-            symbols = { added = " ", modified = " ", removed = " " },
-            colored = true,
+      -- section Location
+      theme.normal.z.bg = cyberdream.pink
+      theme.normal.z.fg = cyberdream.black2
+      theme.insert.z.bg = cyberdream.pink
+      theme.insert.z.fg = cyberdream.black2
+      theme.visual.z.bg = cyberdream.pink
+      theme.visual.z.fg = cyberdream.black2
+      theme.terminal.z.bg = cyberdream.pink
+      theme.terminal.z.fg = cyberdream.black2
+      return theme
+    end
+
+    local function get_lualine_theme()
+      local theme_name = vim.g.colors_name or "auto"
+      local status, theme = pcall(require, "lualine.themes" .. theme_name)
+      if status then
+        return apply_custom_colors(theme)
+      else
+        return apply_custom_colors(require("lualine.themes.auto"))
+      end
+    end
+
+    local function setup_lualine()
+      require("lualine").setup({
+        options = {
+          icons_enabled = true,
+          theme = get_lualine_theme(),
+          component_separators = { left = "󰤃", right = "󰤃" },
+          section_separators = { left = "", right = "" },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          always_show_tabline = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 100,
+            tabline = 100,
+            winbar = 100,
           },
         },
-        lualine_c = {},
-        lualine_x = {
-          {
-            "diagnostics",
-            symbols = { error = " ", warn = " ", info = " ", hint = " " },
-            update_in_insert = true,
-            colored = true,
+        sections = {
+          lualine_a = {
+            "mode",
           },
-          { "filetype", icon_only = true },
-          "filename",
+          lualine_b = {
+            { "branch", icon = " " },
+            {
+              "diff",
+              symbols = { added = " ", modified = " ", removed = " " },
+              colored = true,
+            },
+          },
+          lualine_c = {},
+          lualine_x = {
+            {
+              "diagnostics",
+              symbols = { error = " ", warn = " ", info = " ", hint = " " },
+              update_in_insert = true,
+              colored = true,
+            },
+            { "filetype", icon_only = true },
+            "filename",
+          },
+          lualine_y = {
+            "progress",
+          },
+          lualine_z = { { "location", icon = " " } },
         },
-        lualine_y = {
-          "progress",
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
         },
-        lualine_z = { { "location", icon = " " } },
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {},
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
+      })
+    end
+
+    setup_lualine()
+
+    vim.api.nvim_create_autocmd("Colorscheme", {
+      pattern = "*",
+      callback = function()
+        setup_lualine()
+      end,
     })
   end,
 }
