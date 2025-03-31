@@ -1,5 +1,5 @@
 return {
-  { "moonkose/neocodeium", enabled = true },
+  { "moonkose/neocodeium", enabled = false },
   { "MagicDuck/grug-far.nvim" },
   { "rose-pine/neovim", enabled = false },
   { "frenzyexists/aquarium-vim", enabled = false },
@@ -11,7 +11,7 @@ return {
   { "bluz71/vim-moonfly-colors", enabled = false },
   { "zootedb0t/citruszest.nvim", enabled = false },
   { "folke/flash.nvim", enabled = false },
-  { "supermaven-inc/supermaven-nvim", enabled = false },
+  { "supermaven-inc/supermaven-nvim", enabled = true },
   { "sainnhe/gruvbox-material", enabled = false },
   { "EdenEast/nightfox.nvim", enabled = false },
   { "rose-pine/neovim", enabled = false },
