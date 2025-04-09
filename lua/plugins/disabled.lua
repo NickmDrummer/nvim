@@ -7,7 +7,7 @@ return {
   { "nyoom-engineering/oxocarbon.nvim", enabled = false },
   { "eldritch-vim/eldritch-theme", enabled = false },
   { "slugbyte/lackluster", enabled = false },
-  { "0xstepit/flow.nvim", enabled = false },
+  { "0xstepit/flow.nvim", enabled = true },
   { "bluz71/vim-moonfly-colors", enabled = false },
   { "zootedb0t/citruszest.nvim", enabled = false },
   { "folke/flash.nvim", enabled = false },
