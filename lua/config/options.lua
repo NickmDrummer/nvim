@@ -15,6 +15,22 @@ opt.termguicolors = true
 -- vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 -- vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "cpp",
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.expandtab = true
+  end,
+})
+
+vim.api.nvim_create_user_command("Google", function(o)
+  -- local escaped = require('socket.url').escape(o.args)
+  local escaped = vim.uri_encode(o.args)
+  local url = ("https://www.google.com/search?q=%s"):format(escaped)
+  vim.ui.open(url)
+end, { nargs = 1, desc = "just google it" })
+
 vim.opt.smartindent = true
 vim.opt.list = false
 
