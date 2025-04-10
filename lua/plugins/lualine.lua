@@ -5,14 +5,14 @@ return {
   config = function()
     local cyberdream = {
       black = "#000000",
-      black2 = "#000002",
+      black2 = "#000001",
       white = "#ffffff",
       red = "#ff6e5e",
       green = "#5eff6c",
       blue = "#04d1f9",
       yellow = "#f1ff5e",
       cyan = "#5ef1ff",
-      orange = "#ffbd5e",
+      orange = "#ffa500",
       pureOrange = "#ff5e00",
       magenta = "#ff5ef1",
       pink = "#ff5ea0",
@@ -35,16 +35,16 @@ return {
 
       -- section Progress
       theme.normal.y.bg = cyberdream.black2
-      theme.normal.y.fg = cyberdream.pink
+      theme.normal.y.fg = cyberdream.orange
 
       -- section Location
-      theme.normal.z.bg = cyberdream.pink
+      theme.normal.z.bg = cyberdream.green
       theme.normal.z.fg = cyberdream.black2
-      theme.insert.z.bg = cyberdream.pink
+      theme.insert.z.bg = cyberdream.green
       theme.insert.z.fg = cyberdream.black2
-      theme.visual.z.bg = cyberdream.pink
+      theme.visual.z.bg = cyberdream.green
       theme.visual.z.fg = cyberdream.black2
-      theme.terminal.z.bg = cyberdream.pink
+      theme.terminal.z.bg = cyberdream.green
       theme.terminal.z.fg = cyberdream.black2
       return theme
     end
