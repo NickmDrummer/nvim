@@ -9,7 +9,11 @@ return {
     hide_fillchars = true,
     terminal_colors = false,
     cache = false,
-    borderless_pickers = true,
+    borderless_pickers = false,
+    colors = {
+      orange = "#FFA500",
+      cyan = "#04D1F9",
+    },
     extensions = {
       telescope = true,
       notify = true,
