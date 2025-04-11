@@ -8,11 +8,13 @@ return {
     italic_comments = true,
     hide_fillchars = true,
     terminal_colors = false,
-    cache = false,
+    cache = true,
     borderless_pickers = false,
     colors = {
-      orange = "#FFA500",
+      orange = "#FFB400",
+      blue = "#357FFB",
       cyan = "#04D1F9",
+      red = "#FF3300",
     },
     extensions = {
       telescope = true,
