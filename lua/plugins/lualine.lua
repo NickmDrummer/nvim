@@ -7,7 +7,7 @@ return {
       black = "#000000",
       black2 = "#000001",
       white = "#ffffff",
-      red = "#ff6e5e",
+      red = "#ff3300",
       green = "#5eff6c",
       blue = "#04d1f9",
       yellow = "#f1ff5e",
@@ -35,7 +35,7 @@ return {
 
       -- section Progress
       theme.normal.y.bg = cyberdream.black2
-      theme.normal.y.fg = cyberdream.orange
+      theme.normal.y.fg = cyberdream.red
 
       -- section Location
       theme.normal.z.bg = cyberdream.green
