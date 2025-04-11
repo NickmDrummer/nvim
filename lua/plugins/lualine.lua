@@ -23,12 +23,16 @@ return {
       -- section Mode
       theme.normal.a.bg = cyberdream.blue
       theme.normal.a.fg = cyberdream.black2
+      theme.normal.a.gui = "bold"
       theme.insert.a.bg = cyberdream.green
       theme.insert.a.fg = cyberdream.black2
+      theme.insert.a.gui = "bold"
       theme.visual.a.bg = cyberdream.purple
       theme.visual.a.fg = cyberdream.white
+      theme.visual.a.gui = "bold"
       theme.terminal.a.bg = cyberdream.pureOrange
       theme.terminal.a.fg = cyberdream.white
+      theme.terminal.a.gui = "bold"
 
       -- section Branch
       theme.normal.b.fg = cyberdream.white
@@ -40,12 +44,16 @@ return {
       -- section Location
       theme.normal.z.bg = cyberdream.green
       theme.normal.z.fg = cyberdream.black2
+      theme.normal.z.gui = "bold"
       theme.insert.z.bg = cyberdream.green
       theme.insert.z.fg = cyberdream.black2
+      theme.insert.z.gui = "bold"
       theme.visual.z.bg = cyberdream.green
       theme.visual.z.fg = cyberdream.black2
+      theme.visual.z.gui = "bold"
       theme.terminal.z.bg = cyberdream.green
       theme.terminal.z.fg = cyberdream.black2
+      theme.terminal.z.gui = "bold"
       return theme
     end
 
