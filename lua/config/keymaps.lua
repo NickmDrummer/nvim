@@ -19,6 +19,8 @@ vim.keymap.set("x", "<leader>p", '"_dP')
 -- Replacing the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- Chmod +x on current file
+vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { silent = true })
 -- Add a custom keybinding to toggle the colorscheme
 vim.api.nvim_set_keymap("n", "<leader>tt", ":CyberdreamToggleMode<CR>", { noremap = true, silent = true })
 
