@@ -3,11 +3,10 @@
 -- Add any additional options here
 --
 -- vim.opt.winbar = "%=%m %f"
-local opt = vim.opt
 -- Enable LazyVim auto format
 vim.g.autoformat = true
-opt.wrap = true -- Enable line wrap
-opt.termguicolors = true
+vim.opt.wrap = true -- Enable line wrap
+vim.opt.termguicolors = true
 
 -- Opciones globales
 -- vim.o.tabstop = 4 --  A TAB character looks like 4 spaces
@@ -43,6 +42,8 @@ vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
+
+vim.o.cursorline = true
 
 -- INFO: Moonfly Config Begin
 vim.g.moonflyItalics = true
