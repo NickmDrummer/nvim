@@ -21,16 +21,16 @@ return {
 
     local function apply_custom_colors(theme)
       -- section Mode
-      theme.normal.a.bg = cyberdream.black
+      -- theme.normal.a.bg = cyberdream.black
       theme.normal.a.fg = cyberdream.blue
       theme.normal.a.gui = "bold"
-      theme.insert.a.bg = cyberdream.black
+      -- theme.insert.a.bg = cyberdream.black
       theme.insert.a.fg = cyberdream.green
       theme.insert.a.gui = "bold"
-      theme.visual.a.bg = cyberdream.black
+      -- theme.visual.a.bg = cyberdream.black
       theme.visual.a.fg = cyberdream.purple
       theme.visual.a.gui = "bold"
-      theme.terminal.a.bg = cyberdream.black
+      -- theme.terminal.a.bg = cyberdream.black
       theme.terminal.a.fg = cyberdream.pureOrange
       theme.terminal.a.gui = "bold"
 
@@ -38,20 +38,20 @@ return {
       theme.normal.b.fg = cyberdream.white
 
       -- section Progress
-      theme.normal.y.bg = cyberdream.black
+      -- theme.normal.y.bg = cyberdream.black
       theme.normal.y.fg = cyberdream.red
 
       -- section Location
-      theme.normal.z.bg = cyberdream.black
+      -- theme.normal.z.bg = cyberdream.black
       theme.normal.z.fg = cyberdream.green
       theme.normal.z.gui = "bold"
-      theme.insert.z.bg = cyberdream.black
+      -- theme.insert.z.bg = cyberdream.black
       theme.insert.z.fg = cyberdream.green
       theme.insert.z.gui = "bold"
-      theme.visual.z.bg = cyberdream.black
+      -- theme.visual.z.bg = cyberdream.black
       theme.visual.z.fg = cyberdream.green
       theme.visual.z.gui = "bold"
-      theme.terminal.z.bg = cyberdream.black
+      -- theme.terminal.z.bg = cyberdream.black
       theme.terminal.z.fg = cyberdream.green
       theme.terminal.z.gui = "bold"
       return theme
