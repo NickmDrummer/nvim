@@ -5,7 +5,7 @@ return {
   opts = {
     variant = "default",
     transparent = true,
-    italic_comments = false,
+    italic_comments = true,
     hide_fillchars = true,
     terminal_colors = false,
     cache = true,
