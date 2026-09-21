@@ -3,57 +3,23 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
 
   config = function()
-    local cyberdream = {
-      black = "#000000",
-      black2 = "#000001",
-      white = "#ffffff",
-      red = "#ff3300",
-      green = "#5eff6c",
-      blue = "#04d1f9",
-      yellow = "#f1ff5e",
-      cyan = "#5ef1ff",
-      orange = "#ffa500",
-      pureOrange = "#ff5e00",
-      magenta = "#ff5ef1",
-      pink = "#ff5ea0",
-      purple = "#bd5eff",
-    }
-
     local function apply_custom_colors(theme)
-      -- section Mode
-      -- theme.normal.a.bg = cyberdream.black
-      theme.normal.a.fg = cyberdream.blue
-      theme.normal.a.gui = "bold"
-      -- theme.insert.a.bg = cyberdream.black
-      theme.insert.a.fg = cyberdream.green
-      theme.insert.a.gui = "bold"
-      -- theme.visual.a.bg = cyberdream.black
-      theme.visual.a.fg = cyberdream.purple
-      theme.visual.a.gui = "bold"
-      -- theme.terminal.a.bg = cyberdream.black
-      theme.terminal.a.fg = cyberdream.pureOrange
-      theme.terminal.a.gui = "bold"
+      -- Conserva los foreground/background definidos por el colorscheme.
+      -- Solo garantiza que existan las secciones que Lualine puede utilizar.
+      local modes = { "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }
+      local sections = { "a", "b", "c", "x", "y", "z" }
 
-      -- section Branch
-      theme.normal.b.fg = cyberdream.white
+      for _, mode in ipairs(modes) do
+        theme[mode] = theme[mode] or {}
+        local fallback = theme[mode].c or theme.normal.c or theme.normal.b or {}
 
-      -- section Progress
-      -- theme.normal.y.bg = cyberdream.black
-      theme.normal.y.fg = cyberdream.red
+        for _, section in ipairs(sections) do
+          if not theme[mode][section] or vim.tbl_isempty(theme[mode][section]) then
+            theme[mode][section] = vim.deepcopy(fallback)
+          end
+        end
+      end
 
-      -- section Location
-      -- theme.normal.z.bg = cyberdream.black
-      theme.normal.z.fg = cyberdream.green
-      theme.normal.z.gui = "bold"
-      -- theme.insert.z.bg = cyberdream.black
-      theme.insert.z.fg = cyberdream.green
-      theme.insert.z.gui = "bold"
-      -- theme.visual.z.bg = cyberdream.black
-      theme.visual.z.fg = cyberdream.green
-      theme.visual.z.gui = "bold"
-      -- theme.terminal.z.bg = cyberdream.black
-      theme.terminal.z.fg = cyberdream.green
-      theme.terminal.z.gui = "bold"
       return theme
     end
 
