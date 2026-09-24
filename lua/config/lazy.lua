@@ -15,7 +15,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "cyberdream",
+        colorscheme = "mfd-paper",
       },
     },
     -- import any extras modules here
