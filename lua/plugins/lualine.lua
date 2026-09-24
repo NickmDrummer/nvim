@@ -20,6 +20,15 @@ return {
         end
       end
 
+      -- color personalizado para el bloque INSERT
+      if vim.g.colors_name and vim.g.colors_name:match("^mfd") then
+        theme.insert.a = vim.tbl_extend("force", theme.insert.a or {}, {
+          fg = "#001008",
+          bg = "#ff4e40",
+          gui = "bold",
+        })
+      end
+
       return theme
     end
 
