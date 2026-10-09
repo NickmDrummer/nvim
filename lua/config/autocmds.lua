@@ -17,3 +17,19 @@ vim.filetype.add({
     templ = "templ",
   },
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+  desc = "Disable spell for markdown",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "asm" },
+  callback = function()
+    vim.opt_local.commentstring = "#%s"
+  end,
+  desc = "MARS MIPS uses # for comments",
+})
