@@ -4,8 +4,8 @@ return {
 
   config = function()
     local function apply_custom_colors(theme)
-      -- Conserva los foreground/background definidos por el colorscheme.
-      -- Solo garantiza que existan las secciones que Lualine puede utilizar.
+      -- Keep the foreground/background defined by the colorscheme.
+      -- Only ensure every section Lualine may use actually exists.
       local modes = { "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }
       local sections = { "a", "b", "c", "x", "y", "z" }
 
@@ -20,7 +20,7 @@ return {
         end
       end
 
-      -- color personalizado para el bloque INSERT
+      -- Custom color for the INSERT block
       if vim.g.colors_name and vim.g.colors_name:match("^mfd") then
         theme.insert.a = vim.tbl_extend("force", theme.insert.a or {}, {
           fg = "#001008",
@@ -34,12 +34,17 @@ return {
 
     local function get_lualine_theme()
       local theme_name = vim.g.colors_name or "auto"
-      local status, theme = pcall(require, "lualine.themes" .. theme_name)
-      if status then
-        return apply_custom_colors(theme)
-      else
-        return apply_custom_colors(require("lualine.themes.auto"))
+      local module_name = "lualine.themes" .. theme_name
+      -- The theme is built from the active colorscheme when the module loads,
+      -- so drop the cached copy to rebuild it instead of reusing stale colors.
+      package.loaded[module_name] = nil
+      local status, theme = pcall(require, module_name)
+      if not status then
+        package.loaded["lualine.themes.auto"] = nil
+        theme = require("lualine.themes.auto")
       end
+      -- Copy before patching so the cached module table is never mutated.
+      return apply_custom_colors(vim.deepcopy(theme))
     end
 
     local function setup_lualine()
