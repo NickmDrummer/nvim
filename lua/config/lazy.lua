@@ -15,7 +15,9 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "mfd-paper",
+        -- Initial theme comes from the shared state file when the
+        -- mfd-theme-toggle script set one, otherwise defaults to light.
+        colorscheme = require("config.mfd_theme").initial(),
       },
     },
     -- import any extras modules here
