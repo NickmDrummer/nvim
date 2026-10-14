@@ -7,11 +7,46 @@ local M = {}
 M.LIGHT = "mfd-paper"
 M.DARK = "mfd-amber"
 -- Omarchy system theme mode: Ghostty follows the generated
--- ~/.local/state/omarchy/current/theme/ghostty.conf and Neovim uses the
--- generated aether colorscheme from .../current/theme/neovim.lua.
+-- ~/.local/state/omarchy/current/theme/ghostty.conf and Neovim follows the
+-- theme's own generated .../current/theme/neovim.lua (aether for most
+-- themes, but e.g. everforest for Everforest).
 M.OMARCHY = "omarchy"
+-- Fallback when the generated file is momentarily unreadable (theme swap).
 M.NVIM_OMARCHY_SCHEME = "aether"
 M.DEFAULT = M.LIGHT
+
+-- Path of the Omarchy-generated Neovim theme. OMARCHY_NVIM_THEME_FILE
+-- overrides it (used to test theme parsing without switching themes).
+function M.omarchy_file()
+  local override = vim.env.OMARCHY_NVIM_THEME_FILE
+  if override ~= nil and override ~= "" then
+    return override
+  end
+  return vim.fn.expand("$HOME/.local/state/omarchy/current/theme/neovim.lua")
+end
+
+-- Colorscheme the active Omarchy theme wants (its LazyVim entry), or the
+-- fallback when the generated file is missing/unparseable.
+function M.omarchy_scheme()
+  local ok, spec = pcall(dofile, M.omarchy_file())
+  if ok and type(spec) == "table" then
+    local entries = spec
+    if type(spec[1]) ~= "table" then
+      entries = { spec }
+    end
+    for _, entry in ipairs(entries) do
+      if type(entry) == "table" then
+        local repo = entry[1]
+        if repo == "LazyVim/LazyVim" or entry.name == "LazyVim" then
+          if type(entry.opts) == "table" and type(entry.opts.colorscheme) == "string" then
+            return entry.opts.colorscheme
+          end
+        end
+      end
+    end
+  end
+  return M.NVIM_OMARCHY_SCHEME
+end
 
 function M.state_file()
   local base = vim.env.XDG_STATE_HOME
@@ -54,16 +89,16 @@ function M.write_state(theme)
 end
 
 function M.current()
-  if vim.g.colors_name == M.NVIM_OMARCHY_SCHEME then
+  if vim.g.colors_name == M.omarchy_scheme() then
     return M.OMARCHY
   end
   return normalize(vim.g.colors_name) or M.DEFAULT
 end
 
--- Colorscheme backing a mode (omarchy mode is backed by aether).
+-- Colorscheme backing a mode (omarchy mode follows the Omarchy theme).
 function M.scheme_for(theme)
   if theme == M.OMARCHY then
-    return M.NVIM_OMARCHY_SCHEME
+    return M.omarchy_scheme()
   end
   return theme
 end
@@ -105,7 +140,8 @@ function M.sync_from_state()
 end
 
 -- Initial colorscheme for startup, before LazyVim applies its own default.
--- LazyVim expects a real colorscheme name, so omarchy mode maps to aether.
+-- LazyVim expects a real colorscheme name, so omarchy mode maps to the
+-- Omarchy theme's colorscheme.
 function M.initial()
   local theme = M.read_state() or M.DEFAULT
   return M.scheme_for(theme)
