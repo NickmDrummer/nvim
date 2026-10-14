@@ -6,6 +6,11 @@ local M = {}
 
 M.LIGHT = "mfd-paper"
 M.DARK = "mfd-amber"
+-- Omarchy system theme mode: Ghostty follows the generated
+-- ~/.local/state/omarchy/current/theme/ghostty.conf and Neovim uses the
+-- generated aether colorscheme from .../current/theme/neovim.lua.
+M.OMARCHY = "omarchy"
+M.NVIM_OMARCHY_SCHEME = "aether"
 M.DEFAULT = M.LIGHT
 
 function M.state_file()
@@ -17,7 +22,7 @@ function M.state_file()
 end
 
 local function normalize(theme)
-  if theme == M.LIGHT or theme == M.DARK then
+  if theme == M.LIGHT or theme == M.DARK or theme == M.OMARCHY then
     return theme
   end
   return nil
@@ -49,17 +54,29 @@ function M.write_state(theme)
 end
 
 function M.current()
+  if vim.g.colors_name == M.NVIM_OMARCHY_SCHEME then
+    return M.OMARCHY
+  end
   return normalize(vim.g.colors_name) or M.DEFAULT
+end
+
+-- Colorscheme backing a mode (omarchy mode is backed by aether).
+function M.scheme_for(theme)
+  if theme == M.OMARCHY then
+    return M.NVIM_OMARCHY_SCHEME
+  end
+  return theme
 end
 
 function M.apply(theme)
   if normalize(theme) == nil then
     return
   end
-  if vim.g.colors_name ~= theme then
-    local ok, err = pcall(vim.cmd.colorscheme, theme)
+  local scheme = M.scheme_for(theme)
+  if vim.g.colors_name ~= scheme then
+    local ok, err = pcall(vim.cmd.colorscheme, scheme)
     if not ok then
-      vim.notify("mfd theme: cannot apply " .. theme .. ": " .. tostring(err), vim.log.levels.WARN)
+      vim.notify("mfd theme: cannot apply " .. scheme .. ": " .. tostring(err), vim.log.levels.WARN)
       return
     end
   end
@@ -79,14 +96,19 @@ end
 -- Used when Neovim regains focus after the shell script changed the theme.
 function M.sync_from_state()
   local theme = M.read_state()
-  if theme ~= nil and vim.g.colors_name ~= theme then
-    pcall(vim.cmd.colorscheme, theme)
+  if theme ~= nil then
+    local scheme = M.scheme_for(theme)
+    if vim.g.colors_name ~= scheme then
+      pcall(vim.cmd.colorscheme, scheme)
+    end
   end
 end
 
 -- Initial colorscheme for startup, before LazyVim applies its own default.
+-- LazyVim expects a real colorscheme name, so omarchy mode maps to aether.
 function M.initial()
-  return M.read_state() or M.DEFAULT
+  local theme = M.read_state() or M.DEFAULT
+  return M.scheme_for(theme)
 end
 
 return M
