@@ -15,6 +15,17 @@ M.OMARCHY = "omarchy"
 M.NVIM_OMARCHY_SCHEME = "aether"
 M.DEFAULT = M.LIGHT
 
+-- Manual-override tracking: "manual" becomes true whenever the colorscheme
+-- comes from outside the mfd modes (e.g. :colorscheme cyberdream), so the
+-- FocusGained state sync then leaves that choice alone. apply() clears the
+-- flag again through its own ColorScheme event. "expected" is the scheme
+-- apply()/initial() are about to switch to; the ColorScheme autocmd compares
+-- the active colors_name against it to tell intentional switching from a
+-- manual override.
+M.manual = false
+---@type string?
+M.expected = nil
+
 -- Path of the Omarchy-generated Neovim theme. OMARCHY_NVIM_THEME_FILE
 -- overrides it (used to test theme parsing without switching themes).
 function M.omarchy_file()
@@ -109,6 +120,7 @@ function M.apply(theme)
   end
   local scheme = M.scheme_for(theme)
   if vim.g.colors_name ~= scheme then
+    M.expected = scheme
     local ok, err = pcall(vim.cmd.colorscheme, scheme)
     if not ok then
       vim.notify("mfd theme: cannot apply " .. scheme .. ": " .. tostring(err), vim.log.levels.WARN)
@@ -127,15 +139,31 @@ function M.toggle()
   vim.notify("Theme: " .. M.current(), vim.log.levels.INFO)
 end
 
+-- Tell intentional switching apart from manual overrides: the ColorScheme
+-- event fires for both, but apply()/initial() set M.expected first.
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    local expected = M.expected
+    if expected == nil then
+      M.manual = true
+      return
+    end
+    M.manual = vim.g.colors_name ~= expected
+  end,
+})
+
 -- Reapply the theme from the state file when it differs from the active one.
 -- Used when Neovim regains focus after the shell script changed the theme.
+-- Respects manual overrides: once a colorscheme is chosen outside the mfd
+-- modes (M.manual), the sync leaves it alone until apply() runs again via
+-- <leader>tt or the toggle script.
 function M.sync_from_state()
+  if M.manual then
+    return
+  end
   local theme = M.read_state()
   if theme ~= nil then
-    local scheme = M.scheme_for(theme)
-    if vim.g.colors_name ~= scheme then
-      pcall(vim.cmd.colorscheme, scheme)
-    end
+    M.apply(theme)
   end
 end
 
@@ -144,7 +172,9 @@ end
 -- Omarchy theme's colorscheme.
 function M.initial()
   local theme = M.read_state() or M.DEFAULT
-  return M.scheme_for(theme)
+  local scheme = M.scheme_for(theme)
+  M.expected = scheme -- LazyVim applies this one; scope the ColorScheme check
+  return scheme
 end
 
 return M
