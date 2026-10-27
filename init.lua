@@ -1,7 +1,3 @@
--- forcing block cursor
-vim.opt.guicursor = "n-v-c-i:block"
-vim.opt.clipboard = "unnamedplus" -- Keep normal yanks in the Wayland clipboard
-vim.o.timeoutlen = 300
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- Bootstrap lazy.nvim and LazyVim.
+-- Options, keymaps and autocmds live in lua/config/.
 require("config.lazy")
-vim.opt.clipboard = "unnamedplus" -- Final setting after LazyVim startup

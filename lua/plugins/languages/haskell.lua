@@ -1,5 +1,5 @@
 return {
-  -- Evitar que Mason reinstale haskell-language-server
+  -- Keep Mason from reinstalling haskell-language-server
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
@@ -9,13 +9,13 @@ return {
     end,
   },
 
-  -- Que lspconfig no intente arrancar hls
+  -- Make lspconfig not start hls (haskell-tools.nvim manages it instead)
   {
     "neovim/nvim-lspconfig",
     opts = {
       setup = {
         hls = function()
-          return true -- no arrancar
+          return true -- do not start
         end,
       },
       servers = {
@@ -26,14 +26,14 @@ return {
     },
   },
 
-  -- Configuración correcta de haskell-tools (con init, no opts)
+  -- Proper haskell-tools setup (via init, not opts)
   {
     "mrcjkb/haskell-tools.nvim",
     init = function()
       ---@type haskell-tools.Opts
       vim.g.haskell_tools = {
         hls = {
-          -- Opcional: solo si quieres forzar el binario explícitamente
+          -- Optional: only to force the binary explicitly
           -- cmd = { "haskell-language-server-wrapper", "--lsp" },
         },
       }

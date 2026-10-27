@@ -8,6 +8,11 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+-- Bootstrap lazy.nvim and LazyVim.
+-- Language extras are managed through `lazyvim.json` (see :LazyExtras), so
+-- this file only wires the spec imports. Plugin specs live in grouped
+-- lua/plugins/<area>/ folders; each folder is imported explicitly because
+-- lazy.nvim directory imports do not recurse.
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -17,26 +22,15 @@ require("lazy").setup({
       opts = {
         -- Initial theme comes from the shared state file when the
         -- mfd-theme-toggle script set one, otherwise defaults to light.
-        colorscheme = require("config.mfd_theme").initial(),
+        colorscheme = require("config.theme").initial(),
       },
     },
-    -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    { import = "lazyvim.plugins.extras.lang.clangd" },
-    { import = "lazyvim.plugins.extras.lang.go" },
-    { import = "lazyvim.plugins.extras.lang.haskell" },
-    { import = "lazyvim.plugins.extras.linting.eslint" },
-    {
-      "barrett-ruth/live-server.nvim",
-      build = "pnpm add -g live-server",
-      cmd = { "LiveServerStart", "LiveServerStop" },
-      config = true,
-    },
-    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
-    -- import/override with your plugins
-    { import = "plugins" },
+    { import = "plugins.colors" },
+    { import = "plugins.completion" },
+    { import = "plugins.editor" },
+    { import = "plugins.formatting" },
+    { import = "plugins.languages" },
+    { import = "plugins.ui" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -64,46 +58,4 @@ require("lazy").setup({
       },
     },
   },
-})
--- require("lualine").setup({
---   options = {
---     theme = "eldritch",
---   },
--- })
-
-require("neo-tree").setup({
-  filesystem = {
-    filtered_items = {
-      visible = true,
-      hide_dotfiles = false,
-      hide_gitignored = true,
-    },
-  },
-})
-
-require("telescope").setup({
-  defaults = {
-    file_ignore_patterns = {
-      "node_modules",
-    },
-  },
-})
--- Fixes the black boxes
-require("mini.animate").setup({
-  open = { enable = false },
-  close = { enable = false },
-})
-
-require("lspconfig").gopls.setup({
-  settings = {
-    gopls = {
-      gofumpt = true,
-    },
-  },
-})
-
-require("colorizer").setup()
-
-require("render-markdown").setup({
-  completions = { lsp = { enabled = true } },
 })

@@ -1,3 +1,5 @@
+-- Custom status line. The theme is rebuilt from the active colorscheme on
+-- every Colorscheme event so theme switches never leave stale colors.
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -16,6 +18,16 @@ return {
         for _, section in ipairs(sections) do
           if not theme[mode][section] or vim.tbl_isempty(theme[mode][section]) then
             theme[mode][section] = vim.deepcopy(fallback)
+          end
+        end
+      end
+
+      -- Transparent middle sections: let the terminal background show through,
+      -- like the rest of the editor (mode and position sections keep colors).
+      for _, mode in pairs(theme) do
+        for _, section in ipairs({ "b", "c" }) do
+          if mode[section] then
+            mode[section].bg = "None"
           end
         end
       end
@@ -73,10 +85,10 @@ return {
             "mode",
           },
           lualine_b = {
-            { "branch", icon = " " },
+            { "branch", icon = "" },
             {
               "diff",
-              symbols = { added = " ", modified = " ", removed = " " },
+              symbols = { added = " ", modified = " ", removed = " " },
               colored = true,
             },
           },
@@ -84,7 +96,7 @@ return {
           lualine_x = {
             {
               "diagnostics",
-              symbols = { error = " ", warn = " ", info = " ", hint = " " },
+              symbols = { error = " ", warn = " ", info = " ", hint = " " },
               update_in_insert = true,
               colored = true,
             },
@@ -94,7 +106,7 @@ return {
           lualine_y = {
             "progress",
           },
-          lualine_z = { { "location", icon = " " } },
+          lualine_z = { { "location", icon = "" } },
         },
         inactive_sections = {
           lualine_a = {},

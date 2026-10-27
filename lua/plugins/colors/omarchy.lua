@@ -3,7 +3,7 @@
 -- colorscheme the Omarchy theme wants actually exists in Neovim.
 --
 -- The file's LazyVim entry (which pins a global colorscheme) is skipped so
--- mfd-paper/mfd-amber stay the default; config.mfd_theme applies the theme's
+-- mfd-paper/mfd-amber stay the default; config.theme applies the theme's
 -- colorscheme only in omarchy mode.
 --
 -- Every other known theme plugin is pinned below as dormant (lazy = true):

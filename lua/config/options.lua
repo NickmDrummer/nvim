@@ -1,19 +1,19 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
---
--- vim.opt.winbar = "%=%m %f"
+
+-- Block cursor in every mode
+vim.opt.guicursor = "n-v-c-i:block"
+-- Keep normal yanks in the Wayland clipboard
+vim.opt.clipboard = "unnamedplus"
+vim.o.timeoutlen = 300
+
 -- Enable LazyVim auto format
 vim.g.autoformat = true
 vim.opt.wrap = true -- Enable line wrap
 vim.opt.termguicolors = true
 
--- Opciones globales
--- vim.o.tabstop = 4 --  A TAB character looks like 4 spaces
--- vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
--- vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
--- vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
-
+-- Per-filetype indentation: tabs stay in most languages, 2 spaces in cpp
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "cpp",
   callback = function()

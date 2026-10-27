@@ -7,5 +7,6 @@ return {
   ---@type render.md.UserConfig
   opts = {
     heading = { enabled = true, icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " } },
+    completions = { lsp = { enabled = true } },
   },
 }
