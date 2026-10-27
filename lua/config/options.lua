@@ -12,6 +12,9 @@ vim.o.timeoutlen = 300
 -- ghost-text/compat routing off so both never show at the same time
 vim.g.ai_cmp = false
 
+-- .NET global tools (csharpier etc.) live in a dir no dotfile adds to PATH
+vim.env.PATH = vim.env.PATH .. ":" .. vim.fn.expand("$HOME/.dotnet/tools")
+
 -- Enable LazyVim auto format
 vim.g.autoformat = true
 vim.opt.wrap = true -- Enable line wrap
