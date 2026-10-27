@@ -8,6 +8,10 @@ vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.clipboard = "unnamedplus"
 vim.o.timeoutlen = 300
 
+-- Supermaven renders its own inline suggestions; keep blink.cmp's
+-- ghost-text/compat routing off so both never show at the same time
+vim.g.ai_cmp = false
+
 -- Enable LazyVim auto format
 vim.g.autoformat = true
 vim.opt.wrap = true -- Enable line wrap

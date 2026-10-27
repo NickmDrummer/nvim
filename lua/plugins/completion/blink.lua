@@ -1,18 +1,16 @@
+-- blink.cmp customizations on top of the official LazyVim "coding.blink"
+-- extra (declared in lazyvim.json). Only personal styling and the
+-- render-markdown source live here; keymaps, snippets and cmdline settings
+-- come from the extra.
 return {
   "saghen/blink.cmp",
-  -- optional: provides snippets for the snippet source
-  dependencies = "rafamadriz/friendly-snippets",
-
-  -- use a release tag to download pre-built binaries
-  version = "*",
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
-
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
   opts = {
+    appearance = {
+      -- keep the nvim-cmp highlight fallback the extra turned off; mfd.nvim
+      -- has no native blink integration yet
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = "normal",
+    },
     completion = {
       menu = { border = "rounded" },
       documentation = {
@@ -21,25 +19,19 @@ return {
         window = { border = "rounded" },
       },
     },
-
-    appearance = {
-      use_nvim_cmp_as_default = true,
-      nerd_font_variant = "normal",
+    signature = {
+      window = { winblend = 1 },
     },
-
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "markdown" },
+      -- merged with the extra's { "lsp", "path", "snippets", "buffer" }
+      -- through sources.default opts_extend
+      default = { "markdown" },
       providers = {
         markdown = {
           name = "RenderMarkdown",
           module = "render-markdown.integ.blink",
           fallbacks = { "lsp" },
         },
-      },
-    },
-    signature = {
-      window = {
-        winblend = 1,
       },
     },
   },
