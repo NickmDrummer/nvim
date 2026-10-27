@@ -9,9 +9,8 @@ vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- centered cursor when I scrolling
-vim.keymap.set("n", "<C-d", "C-d>zz")
-vim.keymap.set("n", "<C-u", "C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half page down, centered" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll half page up, centered" })
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", '"_dP')
@@ -21,10 +20,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- Chmod +x on current file
 vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { silent = true })
--- Toggle between the mfd light (mfd-paper) and dark (mfd-amber) themes.
--- Shares state with the mfd-theme-toggle shell script.
 vim.keymap.set("n", "<leader>tt", function()
-  require("config.mfd_theme").toggle()
+  require("config.theme").toggle()
 end, { desc = "Toggle mfd paper/amber theme" })
 
 vim.keymap.set("n", "<leader>cf", function()

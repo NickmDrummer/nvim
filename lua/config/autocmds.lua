@@ -6,15 +6,9 @@
 -- Neovim was open (only applies when the state differs from the active theme).
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   callback = function()
-    require("config.mfd_theme").sync_from_state()
+    require("config.theme").sync_from_state()
   end,
   desc = "Sync mfd theme from shared state file",
-})
-
-vim.filetype.add({
-  extension = {
-    templ = "templ",
-  },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
